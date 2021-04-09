@@ -1,0 +1,58 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template.xhtml"
+                xmlns ="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="conteudo">
+        <h:form acceptcharset="ISO-8859-1">
+
+            <h:dataTable value="#{pessoaBean.listaPessoas}"
+                         var="pessoa" 
+                         styleClass="tabela" 
+                         headerClass="cabecalho"
+                         cellpadding ="10">
+                <f:facet name="header">
+                    <h:outputText value="Lista" />
+                </f:facet>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Código" />
+                    </f:facet>
+                    <h:outputText value="#{pessoa.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{pessoa.nome}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:commandLink action="/faces/pessoa.xhtml">
+                            <h:graphicImage library="imagens" name="add.png" />
+                        </h:commandLink>
+                    </f:facet>
+                    <h:commandLink 
+                        action="#{pessoaBean.preparaAlteracao()}">
+                        <f:setPropertyActionListener value="#{pessoa}"
+                                                     target="#{pessoaBean.pessoa}"/>                             
+                        <h:graphicImage library="imagens" name="edit.png"/>   
+                    </h:commandLink>
+                    <h:commandLink 
+                        action="#{pessoaBean.remove()}">
+                        <f:setPropertyActionListener value="#{pessoaBean.pessoa}"
+                                                     target="#{pessoaBean.pessoa}"/>                             
+                        <h:graphicImage library="imagens" name="delete.png"/> 
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+

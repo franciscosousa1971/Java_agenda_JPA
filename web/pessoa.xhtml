@@ -1,0 +1,54 @@
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./WEB-INF/templates/template.xhtml"
+                xmlns ="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="conteudo">
+        <h:form acceptcharset="ISO-8859-1">
+
+            <h:messages errorStyle="color:red" layout="table"/>
+
+            <h:inputHidden value="#{pessoaBean.pessoa.id}"/>
+
+            <fieldset>
+                <legend>Cadastro de Contatos</legend>
+
+                <h:panelGrid columns="3">
+
+                    <h:outputLabel value="Nome: " for="nome"/>
+                    <h:inputText id="nome" 
+                                 value="#{pessoaBean.pessoa.nome}" size="63"
+                                 required="true"
+                                 requiredMessage="É necessário informar o nome."/>
+                    <h:message for="nome" errorStyle="color:red; display:block"/>
+
+                   <h:outputLabel value="Sobrenome " for="sobrenome"/>
+                    <h:inputText id="sobrenome" 
+                                 value="#{pessoaBean.pessoa.sobrenome}" size="63"
+                                 required="true"
+                                 requiredMessage="É necessário informar o sobrenome."/>
+                    <h:message for="nome" errorStyle="color:red; display:block"/> 
+                    
+                    <h:outputLabel value="Email " for="nome"/>
+                    <h:inputText id="email" 
+                                 value="#{pessoaBean.pessoa.email}" size="63"
+                                 required="true"
+                                 requiredMessage="É necessário informar o email."/>
+                    <h:message for="nome" errorStyle="color:red; display:block"/>
+
+                </h:panelGrid>
+
+            </fieldset>
+
+            <br />
+            <h:panelGroup>
+                <h:commandButton value="Salvar"
+                                 action="#{pessoaBean.insere()}" accesskey="S"
+                                 styleClass="botao"/>
+                <h:commandButton value="Cancelar" type="reset" styleClass="botao"/>
+            </h:panelGroup>
+
+        </h:form> 
+    </ui:define>
+
+</ui:composition>
